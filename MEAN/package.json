@@ -1,0 +1,36 @@
+{
+  "name": "mean",
+  "version": "1.0.0",
+  "description": "a small mean framework",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "HoangNguyen",
+  "license": "ISC",
+  "dependencies": {
+    "bluebird": "^3.5.0",
+    "body-parser": "^1.16.1",
+    "busboy": "^0.2.14",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.14.1",
+    "jsonwebtoken": "^7.3.0",
+    "mongoose": "^4.8.3",
+    "pug": "^2.0.0-beta11"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.18.8",
+    "gulp": "^3.9.1",
+    "gulp-clean": "^0.3.2",
+    "gulp-concat": "^2.6.1",
+    "gulp-folders": "^1.1.0",
+    "gulp-htmlmin": "^3.0.0",
+    "gulp-inject": "^4.2.0",
+    "gulp-ng-annotate": "^2.0.0",
+    "gulp-nodemon": "^2.2.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-sourcemaps": "^2.4.1",
+    "gulp-uglify": "^2.0.1",
+    "run-sequence": "^1.2.2"
+  }
+}
