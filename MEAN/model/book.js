@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 
+
 //create Schema
 var bookSchema = mongoose.Schema({
     title: String,
@@ -9,5 +10,5 @@ var bookSchema = mongoose.Schema({
 });
 
 //create model
-module.exports = 
+module.exports =
     mongoose.model('Book', bookSchema);

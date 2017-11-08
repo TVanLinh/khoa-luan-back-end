@@ -4,7 +4,7 @@ const Promise = require('bluebird');
 /** Search for the defined controllers in the specific path.
  *
  * @param string path - The path to search for controller files.
- * 
+ *
  * @return array controllerFiles - A list of available controller Files.
  */
 
@@ -25,9 +25,9 @@ function getControllerFiles(path) {
 }
 
 /** Determine arguments' names of the function.
- * 
+ *
  * @param function func - a function which you want to determine its arguments' names.
- * 
+ *
  * @return array of string - The list of arguments' names.
  */
 function getArgs(func) {
@@ -45,16 +45,21 @@ function getArgs(func) {
 }
 
 /** Convert a function into api request handler.
- * 
+ *
  * @param function func - A function which will be converted into a request handler.
  * @param Boolean api - is true for api handler and false for mvc handler
  * @param string httpVerb - (GET, POST, PUT, DELETE).
- * 
- * 
+ *
+ *
  * @return function - The request handler.
  */
 function createApiRequestHandler(func, api, httpVerb, controllerName, methodName, securityLevel, secret, verifyUser) {
-    var requestHandler = function (req, res) {        
+    var requestHandler = function (req, res) {
+
+        // res.setHeader('Access-Control-Allow-Origin', '*');
+        // res.setHeader('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+        // res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+
         var token = req.headers.authorization ? req.headers.authorization.split(' ')[1] : '';
 
         verifyUser(token, httpVerb, controllerName, methodName, securityLevel, secret).then(function (data) {
@@ -81,8 +86,8 @@ function createApiRequestHandler(func, api, httpVerb, controllerName, methodName
             var businessResult = func.apply(func, argVals);
             return Promise.resolve(businessResult);
         })
-        .then(data => { 
-            if(api) res.json(data); 
+        .then(data => {
+            if(api) res.json(data);
             else {//
                 var viewPath = controllerName === "index" ? httpVerb + '_' + methodName : controllerName + '/' + httpVerb + '_' + methodName;
                 try{
@@ -111,11 +116,11 @@ function createApiRequestHandler(func, api, httpVerb, controllerName, methodName
 
 /** Create express routes based on defined controllers in the folder.
  * Naming convention in Controller: httpVerb_methodName (example: get_userList)
- * 
+ *
  * @param express app - A Express application which routes are assigned to.
  * @param string controllerPath - a path which point to the controller folder.
  * @param Boolean api - is true if set api routes; is false if set mvc routes
- * 
+ *
  */
 function setRoutes(app, controllerPath, api, secret, verifyUser) {
     var routes = [];
@@ -162,8 +167,8 @@ function setRoutes(app, controllerPath, api, secret, verifyUser) {
             if (api) endpointURL = '/api/' + controllerName + '/' + endpointSuffix;
             // Normalize endpointURL by removing any trailing slashes
             if (endpointURL[endpointURL.length - 1] == '/' && (endpointURL.length > 1)) endpointURL = endpointURL.substr(0, endpointURL.length - 1);
-            
-            
+
+
             var requestHandler = createApiRequestHandler(controller[endpoint], api, httpVerb, controllerName, methodName, securityLevel, secret, verifyUser);
 
             routes.push({

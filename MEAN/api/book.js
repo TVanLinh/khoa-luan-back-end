@@ -1,7 +1,8 @@
 const Book = require('../model/book');
 module.exports = {
     //authenticationCode_httpVerb_name
-    //auth u o 
+    //authentication u
+    //authorization o
     //httpVerb: get post put delete
     //read
     get_index: function(){
