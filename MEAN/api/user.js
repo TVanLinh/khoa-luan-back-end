@@ -61,4 +61,4 @@ module.exports = {
                 return log.userId;
             });
     }
-}
+};

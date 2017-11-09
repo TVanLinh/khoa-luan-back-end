@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 
 //create Schema
 var infoShema = new mongoose.Schema({
-    codeUser: String,
+    staffCode: String,
     cv: {
         fullName: String,
         nameOther: String,
@@ -10,6 +10,7 @@ var infoShema = new mongoose.Schema({
         sex: String,
         email: String,
         phone: String,
+        birthDay: Date,
         placeBirth: {
             city: String,
             district: String,
@@ -27,9 +28,9 @@ var infoShema = new mongoose.Schema({
             street: String,
             numberHome: String
         },
-        iNation: Boolean,
+        hashNation: Boolean,
         nation: String,
-        identity: {identityNumber: String, dateRange: String, placeRange: String},
+        identity: {identityNumber: String, dateRange: Date, placeRange: String},
         placeRegisterHouseHold: String,//noi dang ki ho khau thuong tru
         policyObject: String,
         bloodGroup: String

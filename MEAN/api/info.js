@@ -1,19 +1,19 @@
 const Info = require('../model/info');
-// var CV = require("../model/type/cv");
 module.exports = {
-    u_get_index: function () {
-        console.log("ok");
+
+
+    get_index: function () {
         var cv = new Info({
-            codeUser: "Tran Van Linh",
+            username: "Tran Van Linh",
             cv: {
                 fullName: "",
-                nameDifferent: "",
+                nameOther: "",
                 sex: "",
                 email: "",
                 phone: "",
                 placeBirth: {city: "", district: "", guild: ""},
                 homeTown: {city: "", district: "", guild: ""},
-                iNation: true,
+                hashNation: true,
                 nation: "",
                 identity: {identityNumber: "", dateRange: "", placeRange: ""},
                 placeRegisterHouseHold: "",//noi dang ki ho khau thuong tru
@@ -22,12 +22,33 @@ module.exports = {
             }
 
         });
-        // Info(cv).save();
+        // Info.remove({staffCode: "appAdmin"}, function (err) {
+        //
+        // });
         return Info.find();
     },
 
-    post_index: function (data) {
-        console.log(data);
-        return {ok: "ok"};
+
+    //---so yeu li lich -------------------------------
+    get_cv: function (username) {
+        console.log(username);
+        return Info.findOne({staffCode: username});
     },
-}
+
+    post_cv: function (data) {
+        console.log(data);
+
+        return Info.findOne({staffCode: data["staffCode"]}, function (err, info) {
+            if (info === null) {
+                return Info(data).save();
+            } else {
+                info.cv = data['cv'];
+                return info.save();
+            }
+        });
+    },
+
+    //------------------------------------------------
+
+
+};
