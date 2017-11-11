@@ -48,7 +48,41 @@ module.exports = {
         });
     },
 
+    // quan doi quan ngu dang doan cong  doan
+    post_armypug: function (data) {
+        console.log(data);
+        return Info.findOne({staffCode: data["staffCode"]}, function (err, info) {
+            if (info === null) {
+                return Info(data).save();
+            } else {
+                info.armyPUG = data['armyPUG'];
+                return info.save();
+            }
+        });
+    },
+
+    get_armypug: function (username) {
+        console.log(username);
+        return Info.findOne({staffCode: username}, "-_id armyPUG");
+    },
     //------------------------------------------------
 
+    //quan he gia dinh
+    post_family: function (data) {
+        console.log(JSON.stringify(data));
+        return Info.findOne({staffCode: data["staffCode"]}, function (err, info) {
+            if (info === null) {
+                return Info(data).save();
+            } else {
+                info.family = data['family'];
+                return info.save();
+            }
+        });
+    },
+
+    get_family: function (username) {
+        console.log(JSON.stringify(username));
+        return Info.findOne({staffCode: username}, "-_id family");
+    }
 
 };

@@ -34,7 +34,55 @@ var infoShema = new mongoose.Schema({
         placeRegisterHouseHold: String,//noi dang ki ho khau thuong tru
         policyObject: String,
         bloodGroup: String
-    }
+    },
+
+    armyPUG: {
+        army: {//quan ngu
+            dateIn: Date,//ngay nhap ngu
+            dateOut: Date,//ngay xuat ngu
+            rankTallest: String,// quan ham cao nhat
+            rankVeterans: String, // Hang thuong binh
+            bookInjured: String,//so thuong tat
+            formInjured: String
+        },
+        party: {//dang
+            dateIn: Date,//ngay vao
+            dateInOfical: Date, //ngay vao chinh thuc
+            placeIn: String,//noi ket nap
+            process: [{
+                dateFrom: Date,
+                place: String,
+                position: String,
+                now: Boolean
+            }]
+        },//doan
+        union: {
+            dateIn: Date,
+            placeIn: String,
+            process: [{
+                dateFrom: Date,
+                place: String,
+                position: String,
+                now: Boolean
+            }]
+        },////cong doan
+        group: {
+            dateIn: Date,
+            process: [{
+                dateFrom: Date,
+                place: String,
+                position: String,
+                now: Boolean
+            }]
+        }
+
+    },
+    family: [{
+        relation: String,
+        name: String,
+        yearBirth: Number,
+        job: String
+    }]
 });
 
 
