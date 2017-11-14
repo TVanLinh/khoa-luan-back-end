@@ -83,6 +83,24 @@ module.exports = {
     get_family: function (username) {
         console.log(JSON.stringify(username));
         return Info.findOne({staffCode: username}, "-_id family");
-    }
+    },
 
+    // hop dong lao dong
+    post_contract: function (data) {
+        console.log(JSON.stringify(data));
+        return Info.findOne({staffCode: data["staffCode"]}, function (err, info) {
+            if (info === null) {
+                return Info(data).save();
+            } else {
+                console.log("data['contract'] " +JSON.stringify(data['contract']));
+                info.contract = data['contract'];
+                return info.save();
+            }
+        });
+    },
+    // hop dong lao dong
+    get_contract: function (username) {
+        console.log("get_contract " + JSON.stringify(username));
+        return Info.findOne({staffCode: username}, "-_id contract");
+    },
 };

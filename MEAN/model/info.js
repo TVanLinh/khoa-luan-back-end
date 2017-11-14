@@ -77,10 +77,20 @@ var infoShema = new mongoose.Schema({
         }
 
     },
+    //gia dinh
     family: [{
         relation: String,
         name: String,
         yearBirth: Number,
+        job: String
+    }],
+    //hop dong lao dong
+    contract: [{
+        numberContact: String,
+        specie: Number,
+        dateEffect: Date,
+        dateEndEffect: Date,
+        unitOrgan: String,
         job: String
     }]
 });
