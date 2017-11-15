@@ -1,2 +1,0 @@
-sudo service mongod start
-https://www.youtube.com/watch?v=gFnRo29MxtY&list=PLGquJ_T_JBMQ1C0Pp41sykceli8G1UGtg&index=2

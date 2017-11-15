@@ -92,7 +92,24 @@ var infoShema = new mongoose.Schema({
         dateEndEffect: Date,
         unitOrgan: String,
         job: String
-    }]
+    }],
+    foreign_language: [{
+        name: String,
+        listen: Number,
+        read: Number,
+        speak: Number,
+        write: Number,
+        translate: Number,
+        communicate: Number,
+        branch: String
+    }],
+    politic: [
+        {
+            level: String,
+            yearLicense: Number,
+            now: Boolean
+        }
+    ]
 });
 
 

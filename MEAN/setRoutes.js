@@ -61,9 +61,14 @@ function createApiRequestHandler(func, api, httpVerb, controllerName, methodName
         // res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 
         var token = req.headers.authorization ? req.headers.authorization.split(' ')[1] : '';
+        // console.log(token);
+        // console.log(req.headers.authorization);
 
         verifyUser(token, httpVerb, controllerName, methodName, securityLevel, secret).then(function (data) {
+            console.log('Success');
+            console.log(req.body);
             var args = getArgs(func);
+            console.log(args);
             var argVals = [];
             //prepare parmaters for business api
             args.forEach(function (argName) {
@@ -76,13 +81,14 @@ function createApiRequestHandler(func, api, httpVerb, controllerName, methodName
                     if (paramVal === undefined) paramVal = req.params[argName];
                 } else { //post or put or delete
                     paramVal = req.body[argName];
+                    console.log(paramVal);
                     if (paramVal === undefined) paramVal = req.params[argName];
                     if (paramVal === undefined) paramVal = req.query[argName];
                 }
 
                 argVals.push(paramVal);
             });
-
+            console.log(argVals);
             var businessResult = func.apply(func, argVals);
             return Promise.resolve(businessResult);
         })
